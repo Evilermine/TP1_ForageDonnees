@@ -5,12 +5,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #Contains the data
-dataset = pd.read_stata('Datasets/NMC_5_0.dta', na_values="-9")
+dataset = pd.read_csv("Datasets/NMC_5_0.csv", na_values="-9")
 
 print("Loading dataset...")
 print(dataset[0:10])
 print("dataset loaded !")
 
+CAN=dataset[0:1000]
 
 plt.scatter(CAN[0:1000]["upop"], CAN[0:1000]["pec"])
 plt.show()

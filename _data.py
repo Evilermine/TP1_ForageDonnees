@@ -14,6 +14,13 @@ print("dataset loaded !")
 CAN = dataset[dataset['stateabb'] == "CAN"]
 USA = dataset[dataset['stateabb'] == "USA"]
 
+country =  dataset["stateabb"].unique()
+print("-----number of records by country-----")
+for c in country:
+    ndataByCountry = len(dataset[dataset["stateabb"] == c])
+    print(c + ": " +  str(ndataByCountry))
+    
+
 print(len(CAN))
 print(len(USA))
 
@@ -25,10 +32,7 @@ plt.show()
 print()
 print("Dataset length:",dataset.size)
 
-# Finding the number of countries
 print("Number of countries:",dataset.nunique()['ccode'])
-
-# Finding null values and counting
 nullValues = dataset.isnull().any(axis=1)
 nullValueCount = 0;
 for i in range(len(nullValues)):

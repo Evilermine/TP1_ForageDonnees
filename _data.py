@@ -11,8 +11,18 @@ print("Loading dataset...")
 print(dataset[0:10])
 print("dataset loaded !")
 
-CAN=dataset[0:1000]
+# CAN=dataset[0:]
 
-plt.scatter(CAN[0:1000]["upop"], CAN[0:1000]["pec"])
-plt.show()
+# plt.scatter(CAN[0:]["upop"], CAN[0:]["pec"])
+# plt.show()
 
+print()
+print("Dataset length:",dataset.size)
+
+print("Number of countries:",dataset.nunique()['ccode'])
+nullValues = dataset.isnull().any(axis=1)
+nullValueCount = 0;
+for i in range(len(nullValues)):
+    if nullValues[i]:
+        nullValueCount += 1
+print("Null values:",nullValueCount)

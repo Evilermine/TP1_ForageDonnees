@@ -9,13 +9,7 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #Contains the data
 dataset = pd.read_csv("Datasets/NMC_5_0.csv", na_values="-9")
 
-print("Loading dataset...")
-print(dataset[0:10])
-print("dataset loaded !")
-
-CAN = dataset[dataset['stateabb'] == "CAN"]
-USA = dataset[dataset['stateabb'] == "USA"]
-
+#Displays the number of records by country
 country =  dataset["stateabb"].unique()
 print("-----number of records by country-----")
 for c in country:
@@ -23,16 +17,8 @@ for c in country:
     print(c + ": " +  str(ndataByCountry))
     
 
-print(len(CAN))
-print(len(USA))
-
-print("")
-
-plt.scatter(CAN["upop"][CAN["upop"] != -9], CAN["pec"][CAN["pec"] != -9])
-plt.show()
-
 print()
-print("Dataset length:",dataset.size)
+print("Total Dataset length:",dataset.size)
 
 print("Number of countries:",dataset.nunique()['ccode'])
 nullValues = dataset.isnull().any(axis=1)

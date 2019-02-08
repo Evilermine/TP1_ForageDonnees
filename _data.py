@@ -6,17 +6,24 @@ import matplotlib.pyplot as plt
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
 
+def printCountries(country):
+    print("----------------------------------------number of records by country-----------------------------------------", end="\n\n")
+    for i in range(len(country)):
+        ndataByCountry = len(dataset[dataset["stateabb"] == country[i]])
+        # print(country[i] + ": " +  str(ndataByCountry), end=" | ")
+        print ("{:3}: {:3}".format(country[i], ndataByCountry), end=" | ")
+        if  not ((i + 1) % 10) :
+            print()
+            for j in range(109):
+                print('-', end='')
+            print()
+
 #Contains the data
 dataset = pd.read_csv("Datasets/NMC_5_0.csv", na_values="-9")
 
 #Displays the number of records by country
-country =  dataset["stateabb"].unique()
-print("-----number of records by country-----")
-for c in country:
-    ndataByCountry = len(dataset[dataset["stateabb"] == c])
-    print(c + ": " +  str(ndataByCountry))
-    
-
+printCountries(dataset["stateabb"].unique())
+print()
 print()
 print("Total Dataset length:",dataset.size)
 

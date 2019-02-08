@@ -19,7 +19,10 @@ print("dataset loaded !")
 print()
 print("Dataset length:",dataset.size)
 
+# Finding the number of countries
 print("Number of countries:",dataset.nunique()['ccode'])
+
+# Finding null values and counting
 nullValues = dataset.isnull().any(axis=1)
 nullValueCount = 0;
 for i in range(len(nullValues)):

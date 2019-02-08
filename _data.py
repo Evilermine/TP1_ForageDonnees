@@ -11,10 +11,16 @@ print("Loading dataset...")
 print(dataset[0:10])
 print("dataset loaded !")
 
-# CAN=dataset[0:]
+CAN = dataset[dataset['stateabb'] == "CAN"]
+USA = dataset[dataset['stateabb'] == "USA"]
 
-# plt.scatter(CAN[0:]["upop"], CAN[0:]["pec"])
-# plt.show()
+print(len(CAN))
+print(len(USA))
+
+print("")
+
+plt.scatter(CAN["upop"][CAN["upop"] != -9], CAN["pec"][CAN["pec"] != -9])
+plt.show()
 
 print()
 print("Dataset length:",dataset.size)

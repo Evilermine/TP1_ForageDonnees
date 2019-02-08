@@ -22,4 +22,13 @@ print("")
 plt.scatter(CAN["upop"][CAN["upop"] != -9], CAN["pec"][CAN["pec"] != -9])
 plt.show()
 
+print()
+print("Dataset length:",dataset.size)
 
+print("Number of countries:",dataset.nunique()['ccode'])
+nullValues = dataset.isnull().any(axis=1)
+nullValueCount = 0;
+for i in range(len(nullValues)):
+    if nullValues[i]:
+        nullValueCount += 1
+print("Null values:",nullValueCount)

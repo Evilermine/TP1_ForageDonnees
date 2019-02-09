@@ -47,11 +47,26 @@ datasetYearsPivot = datasetYears.pivot(index='year', columns='stateabb')
 datasetYearsPivot.fillna(0, inplace=True)
 print(datasetYearsPivot)
 datasetYearsPivot.loc['Total'] = datasetYearsPivot.sum()
-print(datasetYearsPivot.sort_values(['Total'], axis=1, ascending=False))
-datasetYearsPivot.plot(kind='area')
 
+
+firstNine = datasetYearsPivot.sort_values(['Total'], axis=1, ascending=False).iloc[:, :9]
+otherCountries = datasetYearsPivot.sort_values(['Total'], axis=1, ascending=False).iloc[:, 9:]
+
+otherCountries['Others'] = otherCountries.sum(axis=1)
+firstNine['Others'] = otherCountries['Others']
+
+firstNine = firstNine.drop('Total')
+
+print(firstNine)
+
+
+
+firstNine.plot(kind="area")
+
+
+plt.xlim(1900, 2012)
 plt.xlabel('Year')
-plt.ylabel('Military Expenditures')
+plt.ylabel('Military Expenditures (USD)')
 plt.title('Military Exp by country')
 
-
+plt.show()

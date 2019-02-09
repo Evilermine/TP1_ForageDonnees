@@ -42,7 +42,13 @@ dataset = dataset.drop(nullValuesIndexes)
 print("Null values:",nullValueCount)
 print("New dataset length:",dataset.size)
 
-datasetYears = pd.DataFrame(dataset, columns=['stateabb','year','milex'])
-print(datasetYears)
-datasetYearsPivot = datasetYears.pivot(index='stateabb', columns='year')
+datasetYears = pd.DataFrame(dataset[dataset['year'] > 1900], columns=['stateabb','year','milex'])
+datasetYearsPivot = datasetYears.pivot(index='year', columns='stateabb')
+datasetYearsPivot.fillna(0, inplace=True)
 print(datasetYearsPivot)
+datasetYearsPivot.loc['Total'] = datasetYearsPivot.sum()
+print(datasetYearsPivot.sort_values(['Total'], axis=1, ascending=False))
+datasetYearsPivot.plot(kind='area')
+plt.show()
+
+

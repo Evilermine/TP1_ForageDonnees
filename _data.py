@@ -44,5 +44,14 @@ print("New dataset length:",dataset.size)
 
 datasetYears = pd.DataFrame(dataset, columns=['stateabb','year','milex'])
 print(datasetYears)
-datasetYearsPivot = datasetYears.pivot(index='stateabb', columns='year')
+datasetYearsPivot = datasetYears.pivot(index='year', columns='stateabb')
 print(datasetYearsPivot)
+
+
+datasetYearsPivot.plot(kind="area")
+
+plt.xlabel('Year')
+plt.ylabel('Military Expenditures')
+plt.title('Military Exp by country')
+
+plt.show()

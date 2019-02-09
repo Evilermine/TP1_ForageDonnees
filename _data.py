@@ -41,3 +41,8 @@ for i in range(len(nullValues)):
 dataset = dataset.drop(nullValuesIndexes)
 print("Null values:",nullValueCount)
 print("New dataset length:",dataset.size)
+
+datasetYears = pd.DataFrame(dataset, columns=['stateabb','year','milex'])
+print(datasetYears)
+datasetYearsPivot = datasetYears.pivot(index='stateabb', columns='year')
+print(datasetYearsPivot)
